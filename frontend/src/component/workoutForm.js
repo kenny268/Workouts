@@ -1,5 +1,6 @@
 import { useState } from "react"
 import {useWorkoutsContext} from "../hooks/useContextHooks"
+
 const WorkoutForm = () => {
     const {dispatch } = useWorkoutsContext()
     const [title,setTitle] = useState('')
@@ -19,9 +20,9 @@ const WorkoutForm = () => {
         })
         const json = await response.json()
 
-        if(!response){
+        if(!response.ok){
             setError(json.error)
-            console.log(json.error)
+            
         }
         if(response.ok){
             setError('')
@@ -33,6 +34,8 @@ const WorkoutForm = () => {
          
 
     }
+
+    console.log('null',errors)
 
     return (
         <form  className="create" onSubmit={handleSubmit}>
